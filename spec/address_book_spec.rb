@@ -14,6 +14,7 @@ RSpec.describe AddressBook do
     it "responds to entries" do
       expect(book).to respond_to(:entries)
       book.import_from_csv("entries.csv")
+      book.import_from_csv("entries_2.csv")
     end
 
     it "initializes entries as an array" do
@@ -80,5 +81,51 @@ RSpec.describe AddressBook do
       entry_five = book.entries[4]
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
+  end
+
+  describe "#import_from_csv_2" do
+    it "imports the correct number of entries" do
+
+      book.import_from_csv("entries_2.csv")
+      book_size = book.entries.size
+
+      expect(book_size).to eq 3
+    end
+
+    it "imports the 1st entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
+    end
+
+    it "imports the 2nd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[1]
+      check_entry(entry_two, "Bob", "555-555-5415", "bob@blocmail.com")
+    end
+
+    it "imports the 3rd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[2]
+      check_entry(entry_three, "Joe", "555-555-3660", "joe@blocmail.com")
+    end
+
+    # it "imports the 1st entry" do
+    #   book.import_from_csv("entries_2.csv")
+    #   entry_one = book.entries[0]
+    #   check_entry(entry_one, "Dad", "555-555-1111", "dad@blocmail.com")
+    # end
+    #
+    # it "imports the 2nd entry" do
+    #   book.import_from_csv("entries_2.csv")
+    #   entry_two = book.entries[1]
+    #   check_entry(entry_two, "Mom", "555-555-2222", "mom@blocmail.com")
+    # end
+    #
+    # it "imports the 3rd entry" do
+    #   book.import_from_csv("entries_2.csv")
+    #   entry_three = book.entries[2]
+    #   check_entry(entry_three, "Dave", "555-555-3333", "dave@blocmail.com")
+    # end
   end
 end
