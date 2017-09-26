@@ -43,6 +43,17 @@ RSpec.describe AddressBook do
     end
   end
 
+  describe "#exterminate" do
+    it "deletes every entry" do
+      book.add_entry("Bill", "111.222.3333", "bill@blocmail.com")
+      book.add_entry("Bill", "111.222.3333", "bill@blocmail.com")
+      book.add_entry("Bill", "111.222.3333", "bill@blocmail.com")
+
+      book.exterminate
+      expect(book.entries.size).to eq 0
+    end
+  end
+
   describe "#import_from_csv" do
     it "imports the correct number of entries" do
 
